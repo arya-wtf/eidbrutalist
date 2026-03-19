@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Eid Mubarak 1447 H ✦</title>
+  <meta property="og:title" content="Eid Mubarak 1447 H ✦" id="og-title">
+  <meta property="og:description" content="Taqabbalallahu minna wa minkum — Arya Pradana & Elux Space" id="og-desc">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#E5E0D8">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #1A1A1A;
+      --concrete: #E5E0D8;
+      --concrete-dark: #D5D0C8;
+      --concrete-light: #EDEBE6;
+      --accent: #C4983A;
+      --accent-dim: #9A7B3C;
+      --muted: #8A857D;
+      --border: #1A1A1A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { background: var(--concrete); scroll-behavior: smooth; }
+
+    body {
+      background: var(--concrete);
+      color: var(--black);
+      font-family: 'Space Mono', monospace;
+      font-weight: 400;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    body.opened { overflow-y: auto; }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      pointer-events: none;
+      opacity: 0.22;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 180px;
+    }
+
+    /* ============================================
+       SCROLL REVEAL SYSTEM
+       All sections below hero use this.
+       Elements start invisible, get .in-view on scroll.
+       ============================================ */
+    .sr {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sr.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Clip variants */
+    .sr-clip-up {
+      opacity: 0;
+      clip-path: inset(100% 0 0 0);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  clip-path 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sr-clip-up.in-view {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+    }
+
+    .sr-clip-down {
+      opacity: 0;
+      clip-path: inset(0 0 100% 0);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  clip-path 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sr-clip-down.in-view {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+    }
+
+    .sr-clip-right {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sr-clip-right.in-view {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+    }
+
+    .sr-scale {
+      opacity: 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sr-scale.in-view {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    /* Stagger children with transition-delay */
+    .sr-delay-1 { transition-delay: 0.1s; }
+    .sr-delay-2 { transition-delay: 0.2s; }
+    .sr-delay-3 { transition-delay: 0.3s; }
+    .sr-delay-4 { transition-delay: 0.4s; }
+    .sr-delay-5 { transition-delay: 0.5s; }
+
+    /* ============================================
+       ACT 1 — BRUTAL ENVELOPE
+       ============================================ */
+    .envelope-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--concrete);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: clip-path 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+      clip-path: inset(0 0 0 0);
+    }
+
+    .envelope-screen.dismissed {
+      clip-path: inset(0 0 100% 0);
+      pointer-events: none;
+    }
+
+    .envelope-content {
+      text-align: center;
+      position: relative;
+    }
+
+    /* Envelope icon — geometric */
+    .env-icon {
+      width: 80px;
+      height: 56px;
+      margin: 0 auto 28px;
+      position: relative;
+    }
+
+    .env-icon-body {
+      width: 80px;
+      height: 56px;
+      border: 3px solid var(--black);
+      position: relative;
+      background: var(--concrete);
+    }
+
+    .env-icon-flap {
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 41px solid transparent;
+      border-right: 41px solid transparent;
+      border-top: 30px solid var(--black);
+    }
+
+    .env-icon-flap-inner {
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 38px solid transparent;
+      border-right: 38px solid transparent;
+      border-top: 28px solid var(--concrete);
+    }
+
+    .env-icon-seal {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--concrete);
+      animation: sealPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes sealPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(196, 152, 58, 0.3); }
+      50% { box-shadow: 0 0 0 10px rgba(196, 152, 58, 0); }
+    }
+
+    .env-from {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .env-from-name {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(22px, 6vw, 32px);
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 32px;
+      line-height: 1;
+    }
+
+    .env-arrow {
+      display: block;
+      margin: 0 auto 20px;
+      width: 48px;
+      height: 48px;
+      border-bottom: 3px solid var(--black);
+      border-right: 3px solid var(--black);
+      transform: rotate(45deg);
+      animation: arrowBounce 1.5s ease-in-out infinite;
+    }
+
+    @keyframes arrowBounce {
+      0%, 100% { transform: rotate(45deg) translate(0, 0); }
+      50% { transform: rotate(45deg) translate(5px, 5px); }
+    }
+
+    .env-open-text {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(48px, 15vw, 100px);
+      letter-spacing: -2px;
+      text-transform: uppercase;
+      line-height: 0.9;
+      color: var(--black);
+    }
+
+    .env-sub {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    .env-recipient {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--accent-dim);
+      margin-top: 12px;
+      opacity: 0;
+    }
+
+    .env-recipient.visible { opacity: 1; }
+
+    /* Sparkles */
+    .env-sparkle {
+      position: absolute;
+      font-size: 28px;
+      color: var(--black);
+      line-height: 1;
+    }
+    .env-sparkle-1 { top: -60px; right: -30px; }
+    .env-sparkle-2 { bottom: 40px; left: -40px; font-size: 18px; }
+
+    /* ============================================
+       PARTICLE CANVAS
+       ============================================ */
+    #particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    /* ============================================
+       ACT 2 — MAIN SCENE
+       ============================================ */
+    .scene {
+      width: 100%;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .scene.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* --- Hero section (animates on open, not scroll) --- */
+    .hero {
+      padding: 32px 24px 48px;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-top-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0;
+      clip-path: inset(0 0 100% 0);
+    }
+
+    .hero-top-bar.reveal {
+      animation: clipRevealDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    }
+
+    .hero-hijri {
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+    }
+
+    .hero-heading {
+      margin-bottom: 24px;
+    }
+
+    .hero-line {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(64px, 20vw, 140px);
+      line-height: 0.88;
+      letter-spacing: -3px;
+      text-transform: uppercase;
+      color: var(--black);
+      opacity: 0;
+      clip-path: inset(100% 0 0 0);
+    }
+
+    .hero-line.reveal {
+      animation: clipRevealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-line:nth-child(1).reveal { animation-delay: 0.2s; }
+    .hero-line:nth-child(2).reveal { animation-delay: 0.35s; }
+
+    .hero-line em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(18px, 5vw, 28px);
+      line-height: 1.4;
+      color: var(--black);
+      margin-bottom: 40px;
+      opacity: 0;
+      clip-path: inset(100% 0 0 0);
+    }
+
+    .hero-sub.reveal {
+      animation: clipRevealUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0;
+    }
+
+    .scroll-indicator.reveal {
+      animation: brutalFadeIn 0.5s ease 0.9s forwards;
+    }
+
+    .scroll-line {
+      width: 40px;
+      height: 2px;
+      background: var(--muted);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-line::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--black);
+      animation: scrollLineMove 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollLineMove {
+      0% { left: -100%; }
+      50% { left: 0; }
+      100% { left: 100%; }
+    }
+
+    /* ============================================
+       DU'A SECTION (scroll reveal)
+       ============================================ */
+    .dua-section {
+      padding: 0 24px 48px;
+    }
+
+    .content-block {
+      border: 2px solid var(--border);
+      padding: 28px 24px;
+      position: relative;
+    }
+
+    .content-block-label {
+      position: absolute;
+      top: -9px;
+      left: 20px;
+      background: var(--concrete);
+      padding: 0 8px;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .taq-text {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .taq-translation {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Geometric crescent */
+    .crescent-brutal {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+    }
+
+    .crescent-brutal-shape {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid var(--black);
+      position: relative;
+    }
+
+    .crescent-brutal-shape::after {
+      content: '';
+      position: absolute;
+      top: -3px;
+      right: 2px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--concrete);
+    }
+
+    .crescent-brutal-star {
+      position: absolute;
+      top: 6px;
+      right: 2px;
+      font-size: 18px;
+      color: var(--black);
+      z-index: 2;
+      animation: brutalTwinkle 2s step-end infinite;
+    }
+
+    @keyframes brutalTwinkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ============================================
+       GREETING SECTION (scroll reveal)
+       ============================================ */
+    .greeting-section {
+      display: none;
+      padding: 0 24px 48px;
+    }
+
+    .greeting-section.visible { display: block; }
+
+    .greeting-box {
+      border: 2px solid var(--border);
+      border-top: none;
+      padding: 36px 24px;
+      text-align: center;
+    }
+
+    .greeting-for {
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .greeting-name-display {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(28px, 8vw, 48px);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      line-height: 1;
+      color: var(--black);
+      position: relative;
+      display: inline-block;
+    }
+
+    .greeting-ampersand {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(20px, 6vw, 36px);
+      color: var(--accent);
+      display: block;
+      margin: 6px 0;
+    }
+
+    /* ============================================
+       MESSAGE SECTION (scroll reveal)
+       ============================================ */
+    .message-section {
+      padding: 0 24px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .msg-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .msg-text {
+      font-size: 14px;
+      line-height: 1.85;
+      color: var(--black);
+      max-width: 320px;
+    }
+
+    .msg-text strong { font-weight: 700; }
+
+    .msg-text-id {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--black);
+      max-width: 320px;
+      opacity: 0.7;
+    }
+
+    .msg-number {
+      font-family: 'Anton', sans-serif;
+      font-size: 48px;
+      color: var(--concrete-dark);
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* ============================================
+       DIVIDER
+       ============================================ */
+    .brutal-divider {
+      height: 2px;
+      background: var(--black);
+      margin: 0 24px;
+    }
+
+    /* ============================================
+       SENDER SECTION (scroll reveal)
+       ============================================ */
+    .sender-section {
+      padding: 40px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .sender-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .sender-name-brutal {
+      font-family: 'Anton', sans-serif;
+      font-size: clamp(32px, 10vw, 56px);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      line-height: 0.9;
+      color: var(--black);
+    }
+
+    .sender-year {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    /* ============================================
+       ACT 3 — BRAND FOOTER (scroll reveal)
+       ============================================ */
+    .brand-footer {
+      border-top: 2px solid var(--black);
+      margin: 0 24px;
+      padding: 32px 0 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: end;
+    }
+
+    .brand-crafted-by {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .brand-name-brutal {
+      font-family: 'Anton', sans-serif;
+      font-size: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+
+    .brand-desc-brutal {
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 200px;
+    }
+
+    .brand-cta-brutal {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border: 2px solid var(--black);
+      color: var(--black);
+      text-decoration: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.15s, color 0.15s;
+      justify-self: end;
+      align-self: end;
+    }
+
+    .brand-cta-brutal:hover,
+    .brand-cta-brutal:active {
+      background: var(--black);
+      color: var(--concrete);
+    }
+
+    .brand-cta-brutal svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .bottom-space { height: 40px; }
+
+    /* ============================================
+       EASTER EGG
+       ============================================ */
+    .wish-hint {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      z-index: 10;
+      pointer-events: none;
+      white-space: nowrap;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .wish-hint.visible { opacity: 1; }
+    .wish-hint.hide { opacity: 0; }
+
+    .shooting-star {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: var(--black);
+      pointer-events: none;
+      z-index: 60;
+      animation: shoot 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .shooting-star::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--black));
+    }
+
+    @keyframes shoot {
+      0% { transform: translate(0, 0) rotate(-35deg); opacity: 1; }
+      70% { opacity: 1; }
+      100% { transform: translate(300px, -200px) rotate(-35deg); opacity: 0; }
+    }
+
+    /* ============================================
+       KEYFRAMES (hero only — scroll sections use transitions)
+       ============================================ */
+    @keyframes clipRevealUp {
+      from { opacity: 0; clip-path: inset(100% 0 0 0); }
+      to { opacity: 1; clip-path: inset(0 0 0 0); }
+    }
+
+    @keyframes clipRevealDown {
+      from { opacity: 0; clip-path: inset(0 0 100% 0); }
+      to { opacity: 1; clip-path: inset(0 0 0 0); }
+    }
+
+    @keyframes brutalFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (min-width: 600px) {
+      .hero { padding: 40px 48px 48px; }
+      .hero-top-bar { padding: 20px 48px; }
+      .scroll-indicator { left: 48px; }
+      .dua-section { padding: 0 48px 48px; }
+      .greeting-section { padding: 0 48px 48px; }
+      .message-section { padding: 0 48px 48px; }
+      .brutal-divider { margin: 0 48px; }
+      .sender-section { padding: 40px 48px; }
+      .brand-footer { margin: 0 48px; }
+      .msg-text, .msg-text-id { max-width: 400px; }
+    }
+
+    @media (min-width: 900px) {
+      .hero { padding: 60px 80px 60px; max-width: 900px; margin: 0 auto; }
+      .hero-top-bar { max-width: 900px; left: 50%; transform: translateX(-50%); padding: 24px 80px; }
+      .scroll-indicator { left: 80px; }
+      .dua-section { max-width: 900px; margin: 0 auto; padding: 0 80px 60px; }
+      .greeting-section { max-width: 900px; margin: 0 auto; padding: 0 80px 60px; }
+      .message-section { max-width: 900px; margin: 0 auto; padding: 0 80px 60px; }
+      .brutal-divider { max-width: calc(900px - 160px); margin: 0 auto; }
+      .sender-section { max-width: 900px; margin: 0 auto; padding: 48px 80px; }
+      .brand-footer { max-width: calc(900px - 160px); margin: 0 auto; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="particles"></canvas>
+
+  <!-- ==========================================
+       ACT 1 — ENVELOPE
+       ========================================== -->
+  <div class="envelope-screen" id="envelope">
+    <div class="envelope-content" id="envelope-tap">
+      <div class="env-sparkle env-sparkle-1">✦✦</div>
+      <div class="env-sparkle env-sparkle-2">✦</div>
+
+      <!-- Envelope icon -->
+      <div class="env-icon">
+        <div class="env-icon-flap"></div>
+        <div class="env-icon-flap-inner"></div>
+        <div class="env-icon-body"></div>
+        <div class="env-icon-seal">✦</div>
+      </div>
+
+      <div class="env-from">You got a message from</div>
+      <div class="env-from-name">Arya & Farida</div>
+
+      <div class="env-arrow"></div>
+      <div class="env-open-text">Open</div>
+      <div class="env-sub">Tap anywhere</div>
+      <div class="env-recipient" id="envelope-recipient"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       ACT 2 — GREETING
+       ========================================== -->
+  <div class="scene" id="scene">
+
+    <!-- HERO — animates on open (not scroll) -->
+    <div class="hero">
+      <div class="hero-top-bar" id="topbar">
+        <span>Eid Al-Fitr</span>
+        <span class="hero-hijri">1447 H</span>
+      </div>
+
+      <div class="hero-heading">
+        <div class="hero-line" id="hl1">EID</div>
+        <div class="hero-line" id="hl2">MUB<em>ARAK</em></div>
+      </div>
+
+      <div class="hero-sub" id="hsub">how it was<br>how it is<br>how it's gonna be</div>
+
+      <div class="scroll-indicator" id="scroll-ind">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </div>
+
+    <!-- DU'A — scroll reveal -->
+    <div class="dua-section">
+      <div class="content-block sr-clip-right" data-sr>
+        <div class="content-block-label">Du'a</div>
+        <div class="taq-text">Taqabbalallāhu Minnā wa Minkum</div>
+        <div class="taq-translation">May God accept from us and from you</div>
+        <div class="crescent-brutal">
+          <div class="crescent-brutal-shape"></div>
+          <div class="crescent-brutal-star">✦</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GREETING — scroll reveal (if personalized) -->
+    <div class="greeting-section" id="greeting-section">
+      <div class="greeting-box sr-clip-down" data-sr>
+        <div class="greeting-for">Special greeting for</div>
+        <div class="greeting-name-display" id="greeting-name"></div>
+        <div class="greeting-ampersand">&</div>
+        <div class="greeting-name-display">Keluarga</div>
+      </div>
+    </div>
+
+    <!-- MESSAGES — scroll reveal, staggered -->
+    <div class="message-section">
+      <div class="msg-row sr" data-sr>
+        <div class="msg-text">
+          Wishing you a blessed Eid filled with <strong>joy, peace, and new beginnings.</strong>
+        </div>
+        <div class="msg-number">01</div>
+      </div>
+      <div class="msg-row sr sr-delay-2" data-sr>
+        <div class="msg-text-id">
+          Mohon maaf lahir dan batin. Semoga kebaikan dan keberkahan selalu menyertai perjalanan kita semua.
+        </div>
+        <div class="msg-number">02</div>
+      </div>
+    </div>
+
+    <!-- DIVIDER — scroll reveal -->
+    <div class="brutal-divider sr-scale" data-sr></div>
+
+    <!-- SENDER — scroll reveal -->
+    <div class="sender-section sr" data-sr>
+      <div>
+        <div class="sender-label">Warm regards</div>
+        <div class="sender-name-brutal">Arya<br>& Farida</div>
+      </div>
+      <div class="sender-year">Syawwal 1447 H<br>/ 2026</div>
+    </div>
+
+    <!-- BRAND — scroll reveal -->
+    <div class="brand-footer sr sr-delay-2" data-sr>
+      <div>
+        <div class="brand-desc-brutal">We design and build products founders are proud of.</div>
+      </div>
+      <a href="https://elux.space" target="_blank" rel="noopener" class="brand-cta-brutal">
+        See our work
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 17L17 7M17 7H7M17 7v10"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="bottom-space"></div>
+  </div>
+
+  <!-- Easter egg -->
+  <div class="wish-hint" id="wish-hint">Tap anywhere to see a magic ✦</div>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // ==========================================
+    // PERSONALIZATION
+    // ==========================================
+    function getRecipientName() {
+      var path = window.location.pathname.replace(/^\/+|\/+$/g, '');
+      if (path && !path.includes('/') && !path.includes('.')) return path;
+      var params = new URLSearchParams(window.location.search);
+      var toParam = params.get('to');
+      if (toParam) return toParam;
+      var hash = window.location.hash.replace('#', '');
+      if (hash) return hash;
+      return null;
+    }
+
+    function formatName(raw) {
+      return decodeURIComponent(raw)
+        .replace(/[-_+]/g, ' ')
+        .replace(/\b\w/g, function(c) { return c.toUpperCase(); })
+        .trim();
+    }
+
+    var rawName = getRecipientName();
+    var recipientName = rawName ? formatName(rawName) : null;
+
+    if (recipientName) {
+      var envRecipient = document.getElementById('envelope-recipient');
+      envRecipient.textContent = 'untuk ' + recipientName + ' & Keluarga';
+      envRecipient.classList.add('visible');
+
+      document.title = 'Eid Mubarak — untuk ' + recipientName;
+      var ogTitle = document.getElementById('og-title');
+      var ogDesc = document.getElementById('og-desc');
+      if (ogTitle) ogTitle.setAttribute('content', 'Eid Mubarak untuk ' + recipientName + ' ✦');
+      if (ogDesc) ogDesc.setAttribute('content', 'Taqabbalallahu minna wa minkum — ' + recipientName + ' & Keluarga');
+    }
+
+    // ==========================================
+    // PARTICLE SYSTEM
+    // ==========================================
+    var pCanvas = document.getElementById('particles');
+    var pCtx = pCanvas.getContext('2d');
+    var parts = [];
+    var pActive = false;
+
+    function initPC() {
+      pCanvas.width = window.innerWidth;
+      pCanvas.height = window.innerHeight;
+    }
+
+    function spawnParticles(cx, cy, count) {
+      for (var i = 0; i < count; i++) {
+        var angle = Math.random() * Math.PI * 2;
+        var speed = 1.5 + Math.random() * 4;
+        parts.push({
+          x: cx, y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 1.5,
+          size: 1.5 + Math.random() * 3,
+          life: 1,
+          decay: 0.01 + Math.random() * 0.015,
+          dark: Math.random() > 0.4
+        });
+      }
+      if (!pActive) { pActive = true; animP(); }
+    }
+
+    function animP() {
+      pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+      for (var i = parts.length - 1; i >= 0; i--) {
+        var p = parts[i];
+        p.x += p.vx; p.y += p.vy;
+        p.vy += 0.04;
+        p.life -= p.decay;
+        if (p.life <= 0) { parts.splice(i, 1); continue; }
+        pCtx.beginPath();
+        pCtx.rect(p.x - p.size * p.life / 2, p.y - p.size * p.life / 2, p.size * p.life, p.size * p.life);
+        if (p.dark) {
+          pCtx.fillStyle = 'rgba(26, 26, 26, ' + p.life * 0.7 + ')';
+        } else {
+          pCtx.fillStyle = 'rgba(196, 152, 58, ' + p.life * 0.8 + ')';
+        }
+        pCtx.fill();
+      }
+      if (parts.length > 0) requestAnimationFrame(animP);
+      else pActive = false;
+    }
+
+    window.addEventListener('resize', initPC);
+    initPC();
+
+    // ==========================================
+    // INTERSECTION OBSERVER — scroll reveals
+    // ==========================================
+    var srElements = document.querySelectorAll('[data-sr]');
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+
+          // Particle burst on greeting name
+          if (entry.target.closest('.greeting-section') && recipientName) {
+            setTimeout(function() {
+              var nameEl = document.getElementById('greeting-name');
+              if (nameEl) {
+                var rect = nameEl.getBoundingClientRect();
+                spawnParticles(rect.left + rect.width / 2, rect.top + rect.height / 2, 40);
+                if (navigator.vibrate) navigator.vibrate([15, 40, 15]);
+              }
+            }, 400);
+          }
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -60px 0px'
+    });
+
+    // Don't observe until scene is active
+    function startObserving() {
+      srElements.forEach(function(el) {
+        observer.observe(el);
+      });
+    }
+
+    // ==========================================
+    // ACT 1 → ACT 2
+    // ==========================================
+    var envelope = document.getElementById('envelope');
+    var scene = document.getElementById('scene');
+    var opened = false;
+
+    function openGreeting() {
+      if (opened) return;
+      opened = true;
+
+      if (navigator.vibrate) navigator.vibrate(40);
+
+      envelope.classList.add('dismissed');
+
+      setTimeout(function() {
+        document.body.classList.add('opened');
+        scene.classList.add('active');
+
+        // Reveal hero elements (these animate on open, not scroll)
+        setTimeout(function() {
+          document.getElementById('topbar').classList.add('reveal');
+          document.getElementById('hl1').classList.add('reveal');
+          document.getElementById('hl2').classList.add('reveal');
+          document.getElementById('hsub').classList.add('reveal');
+          document.getElementById('scroll-ind').classList.add('reveal');
+
+          // Show greeting section if personalized
+          if (recipientName) {
+            var gs = document.getElementById('greeting-section');
+            gs.classList.add('visible');
+            document.getElementById('greeting-name').textContent = recipientName;
+          }
+
+          // Start observing scroll reveals
+          setTimeout(startObserving, 300);
+
+          // Easter egg hint
+          setTimeout(function() {
+            document.getElementById('wish-hint').classList.add('visible');
+            setTimeout(function() {
+              document.getElementById('wish-hint').classList.add('hide');
+            }, 4000);
+          }, 3500);
+
+        }, 150);
+
+        setTimeout(function() { envelope.style.display = 'none'; }, 800);
+      }, 550);
+    }
+
+    envelope.addEventListener('click', openGreeting);
+    envelope.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      openGreeting();
+    });
+
+    // ==========================================
+    // EASTER EGG — Hold to wish
+    // ==========================================
+    var wishCount = 0;
+
+    function triggerStar(tapX, tapY) {
+      if (wishCount >= 12) return;
+      wishCount++;
+      if (navigator.vibrate) navigator.vibrate([10, 20, 10]);
+
+      var star = document.createElement('div');
+      star.className = 'shooting-star';
+      // Spawn near tap position with slight randomness
+      var sx = tapX || (Math.random() * 40 + 10) / 100 * window.innerWidth;
+      var sy = tapY || (Math.random() * 35 + 5) / 100 * window.innerHeight;
+      star.style.left = sx + 'px';
+      star.style.top = sy + 'px';
+      document.body.appendChild(star);
+
+      spawnParticles(sx, sy, 18);
+
+      setTimeout(function() { star.remove(); }, 1000);
+    }
+
+    function onTap(e) {
+      if (!opened) return;
+      if (e.target.closest('a')) return;
+
+      var x, y;
+      if (e.changedTouches && e.changedTouches.length) {
+        x = e.changedTouches[0].clientX;
+        y = e.changedTouches[0].clientY;
+      } else {
+        x = e.clientX;
+        y = e.clientY;
+      }
+
+      triggerStar(x, y);
+    }
+
+    document.addEventListener('click', onTap);
+
+  })();
+  </script>
+
+</body>
+</html>
