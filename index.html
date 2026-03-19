@@ -130,6 +130,7 @@
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       transition: border-color 0.3s;
+      z-index: 51;
     }
     .env-frame:active {
       border-color: var(--gold);
@@ -216,9 +217,10 @@
       position: relative;
       z-index: 1;
       opacity: 0;
+      pointer-events: none;
       transition: opacity 0.6s ease 0.3s;
     }
-    .scene.revealed { opacity: 1; }
+    .scene.revealed { opacity: 1; pointer-events: auto; }
 
     /* ---- Crescent ---- */
     .crescent-wrap {
@@ -524,11 +526,11 @@
   <div id="act1">
     <div class="act1-year">Eid Mubarak · 1447 H</div>
     <div class="env-frame" id="open-btn" role="button" aria-label="Tap to open greeting" tabindex="0">
-      <div style="position:relative">
+      <div style="position:relative; pointer-events: none;">
         <div class="env-crescent"></div>
         <div class="env-star">✦</div>
       </div>
-      <div class="tap-label">Open</div>
+      <div class="tap-label" style="pointer-events: none;">Open</div>
     </div>
     <div class="act1-sender">from Arya &amp; Farida</div>
   </div>
@@ -641,12 +643,17 @@
     ======================================== */
     var starCanvas = document.getElementById('star-canvas');
     var sCtx = starCanvas.getContext('2d');
+    var pCanvas = document.getElementById('particle-canvas');
+    var pCtx = pCanvas.getContext('2d');
+    var shootCanvas = document.getElementById('shoot-canvas');
+    var shCtx = shootCanvas.getContext('2d');
+
     var stars = [];
     var parallaxX = 0, parallaxY = 0;
     var targetPX = 0, targetPY = 0;
     var PARALLAX_STRENGTH = 24;
 
-    function resizeCanvas(c) { c.width = window.innerWidth; c.height = window.innerHeight; }
+    function resizeCanvas(c) { if(c) { c.width = window.innerWidth; c.height = window.innerHeight; } }
     function resizeAll() {
       resizeCanvas(starCanvas);
       resizeCanvas(pCanvas);
@@ -731,25 +738,27 @@
        PARALLAX
     ======================================== */
     window.addEventListener('mousemove', function (e) {
-      var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-      targetPX = ((e.clientX - cx) / cx) * PARALLAX_STRENGTH;
-      targetPY = ((e.clientY - cy) / cy) * PARALLAX_STRENGTH;
+      if (opened) {
+        var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+        targetPX = ((e.clientX - cx) / cx) * PARALLAX_STRENGTH;
+        targetPY = ((e.clientY - cy) / cy) * PARALLAX_STRENGTH;
+      }
     });
 
     if (window.DeviceOrientationEvent) {
       window.addEventListener('deviceorientation', function (e) {
-        var beta  = Math.max(-30, Math.min(30, e.beta  || 0));
-        var gamma = Math.max(-30, Math.min(30, e.gamma || 0));
-        targetPX = (gamma / 30) * PARALLAX_STRENGTH;
-        targetPY = (beta  / 30) * PARALLAX_STRENGTH;
+        if (opened) {
+          var beta  = Math.max(-30, Math.min(30, e.beta  || 0));
+          var gamma = Math.max(-30, Math.min(30, e.gamma || 0));
+          targetPX = (gamma / 30) * PARALLAX_STRENGTH;
+          targetPY = (beta  / 30) * PARALLAX_STRENGTH;
+        }
       });
     }
 
     /* ========================================
        PARTICLE BURST — RECTANGULAR FRAGMENTS
     ======================================== */
-    var pCanvas = document.getElementById('particle-canvas');
-    var pCtx = pCanvas.getContext('2d');
     var particles = [];
 
     function spawnParticles(x, y) {
@@ -794,8 +803,6 @@
     /* ========================================
        FALLING BLOCKS (TAP ANYWHERE)
     ======================================== */
-    var shootCanvas = document.getElementById('shoot-canvas');
-    var shCtx = shootCanvas.getContext('2d');
     var blocks = [];
 
     function spawnBlock() {
@@ -850,13 +857,13 @@
     var opened = false;
 
     document.addEventListener('click', function (e) {
-      if (e.target.closest('#act1') || e.target.closest('#sound-btn')) return;
       if (!opened) return;
+      if (e.target.closest('#act1') || e.target.closest('#sound-btn') || e.target.closest('a')) return;
       triggerBlockShower();
     });
     document.addEventListener('touchend', function (e) {
-      if (e.target.closest('#act1') || e.target.closest('#sound-btn')) return;
       if (!opened) return;
+      if (e.target.closest('#act1') || e.target.closest('#sound-btn') || e.target.closest('a')) return;
       triggerBlockShower();
     }, { passive: true });
 
@@ -945,11 +952,13 @@
     }
 
     var openBtn = document.getElementById('open-btn');
-    openBtn.addEventListener('click', openCard);
-    openBtn.addEventListener('touchend', function (e) { e.preventDefault(); openCard(); });
-    openBtn.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') openCard();
-    });
+    if (openBtn) {
+        openBtn.addEventListener('click', openCard);
+        openBtn.addEventListener('touchend', function (e) { e.preventDefault(); openCard(); });
+        openBtn.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') openCard();
+        });
+    }
 
     /* ========================================
        MAIN LOOP
