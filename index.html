@@ -433,38 +433,18 @@
     }
     .signature-wrap.animate { animation: rise 0.6s ease 1.3s forwards; }
 
-    .sig-tagline {
-      font-size: 9px;
-      font-weight: 500;
+    .brand-link {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 11px;
+      font-weight: 400;
       color: var(--muted);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .brand-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 32px;
-      border: 1px solid var(--border-strong);
-      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: lowercase;
       text-decoration: none;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      box-shadow: 4px 4px 0 var(--gold-dim);
-      -webkit-tap-highlight-color: transparent;
-      transition: all 0.2s;
-      min-height: 44px;
+      transition: color 0.3s ease;
     }
-    .brand-cta:active, .brand-cta:hover {
-      border-color: var(--gold);
-      background: rgba(212,168,83,0.06);
-      transform: translate(2px, 2px);
-      box-shadow: 2px 2px 0 var(--gold-dim);
+    .brand-link:hover, .brand-link:active {
+      color: var(--gold);
     }
     .brand-cta svg { width: 12px; height: 12px; flex-shrink: 0; }
 
@@ -563,15 +543,9 @@
     <div class="divider divider-2" id="c-line2"></div>
 
     <div class="signature-wrap" id="c-sig">
-      <div class="sig-tagline">Product Designer That Founders Love</div>
-      <div>
-        <a href="https://elux.space" target="_blank" rel="noopener" class="brand-cta">
-          elux.space
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </a>
-      </div>
+      <a href="https://elux.space" target="_blank" rel="noopener" class="brand-link">
+        elux.space — product design for founders
+      </a>
     </div>
 
   </div>
