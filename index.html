@@ -274,8 +274,6 @@
 
     /* ---- Taqabbal ---- */
     .taq-frame {
-      border: 1px solid var(--border);
-      padding: 12px 20px;
       margin-bottom: 20px;
       text-align: center;
       opacity: 0;
@@ -532,12 +530,12 @@
       <div class="icon-star">✦</div>
     </div>
 
-    <div class="divider divider-1" id="c-line1"></div>
-
     <div class="taq-frame" id="c-taq">
       <div class="taq">Taqabbalallāhu Minnā wa Minkum</div>
       <div class="taq-sub">May God accept from us and from you</div>
     </div>
+
+    <div class="divider divider-1" id="c-line1"></div>
 
     <h1 id="c-h1">EID <em>MUBARAK</em></h1>
     <div class="year" id="c-year">1 Syawwal 1447 H</div>
@@ -722,26 +720,9 @@
     window.addEventListener('resize', resizeAll);
 
     /* ========================================
-       PARALLAX
+       PARALLAX (Disabled)
     ======================================== */
-    window.addEventListener('mousemove', function (e) {
-      if (opened) {
-        var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-        targetPX = ((e.clientX - cx) / cx) * PARALLAX_STRENGTH;
-        targetPY = ((e.clientY - cy) / cy) * PARALLAX_STRENGTH;
-      }
-    });
-
-    if (window.DeviceOrientationEvent) {
-      window.addEventListener('deviceorientation', function (e) {
-        if (opened) {
-          var beta  = Math.max(-30, Math.min(30, e.beta  || 0));
-          var gamma = Math.max(-30, Math.min(30, e.gamma || 0));
-          targetPX = (gamma / 30) * PARALLAX_STRENGTH;
-          targetPY = (beta  / 30) * PARALLAX_STRENGTH;
-        }
-      });
-    }
+    // User requested removal of parallax effect on 19/03/2026
 
     /* ========================================
        PARTICLE BURST — RECTANGULAR FRAGMENTS
