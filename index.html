@@ -10,12 +10,13 @@
   <meta property="og:title" content="Eid Mubarak 1447 H ✦" id="og-title">
   <meta property="og:description" content="Taqabbalallahu minna wa minkum — From Arya &amp; Farida, with care." id="og-desc">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://elux.space/og-eid.jpg" id="og-image">
+  <meta property="og:image" content="https://eidbrutalist.vercel.app/og-eid.png" id="og-image">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Eid Mubarak 1447 H ✦" id="tw-title">
   <meta name="twitter:description" content="Taqabbalallahu minna wa minkum — From Arya &amp; Farida" id="tw-desc">
+  <meta name="twitter:image" content="https://eidbrutalist.vercel.app/og-eid.png">
   <meta name="theme-color" content="#0A0A0F">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -61,33 +62,7 @@
     #particle-canvas { z-index: 10; }
     #shoot-canvas  { z-index: 9; }
 
-    /* ============ WISH HINT ============ */
-    #wish-hint {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      font-size: 10px;
-      font-family: 'Space Grotesk', monospace;
-      color: var(--muted);
-      background: rgba(10, 10, 15, 0.95);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      opacity: 0;
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      pointer-events: none;
-      z-index: 20;
-      white-space: nowrap;
-      border: 1px solid var(--border-strong);
-      padding: 10px 20px;
-      box-shadow: 4px 4px 0 var(--gold-dim);
-    }
-    #wish-hint.visible {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+
 
 
 
@@ -448,6 +423,55 @@
     }
     .brand-cta svg { width: 12px; height: 12px; flex-shrink: 0; }
 
+    /* ============ MINI GAME ============ */
+    #game-canvas {
+      position: fixed; inset: 0; pointer-events: none; z-index: 100;
+    }
+    #game-canvas.active { pointer-events: auto; }
+    
+    #game-ui {
+      position: fixed; top: 20px; left: 24px; right: 24px;
+      display: flex; justify-content: space-between;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px; font-weight: 700; color: var(--gold);
+      z-index: 101; pointer-events: none; opacity: 0;
+      transition: opacity 0.3s;
+    }
+    #game-ui.visible { opacity: 1; }
+
+    #game-over {
+      position: fixed; inset: 0; background: rgba(10,10,15,0.95);
+      z-index: 102; display: none; align-items: center; justify-content: center;
+      flex-direction: column; text-align: center; padding: 24px;
+      opacity: 0; transition: opacity 0.5s;
+    }
+    #game-over.visible { display: flex; opacity: 1; }
+    #game-over h2 { font-size: 48px; margin-bottom: 16px; color: var(--cream); font-family: 'Space Grotesk', sans-serif; }
+    #game-over p { font-size: 14px; margin-bottom: 32px; color: var(--muted); font-family: 'Outfit', sans-serif; }
+    
+    .easter-egg-btn {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 11px; font-weight: 700; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 2px;
+      margin-top: 16px; display: inline-block; cursor: pointer;
+      padding: 12px 24px;
+      border: 1px solid var(--gold);
+      background: rgba(212,168,83,0.1);
+      box-shadow: 0 0 16px rgba(212,168,83,0.4), inset 0 0 8px rgba(212,168,83,0.2);
+      transition: all 0.3s;
+      animation: pulse-glow 2s infinite alternate;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .easter-egg-btn:hover, .easter-egg-btn:active { 
+      background: rgba(212,168,83,0.25);
+      box-shadow: 0 0 24px rgba(212,168,83,0.7), inset 0 0 12px rgba(212,168,83,0.4);
+      transform: scale(1.05);
+    }
+    @keyframes pulse-glow {
+      from { box-shadow: 0 0 8px rgba(212,168,83,0.2), inset 0 0 4px rgba(212,168,83,0.1); }
+      to { box-shadow: 0 0 20px rgba(212,168,83,0.6), inset 0 0 10px rgba(212,168,83,0.3); }
+    }
+
     /* ============ ANIMATIONS ============ */
     @keyframes fadeIn { to { opacity: 1; } }
     @keyframes rise {
@@ -480,10 +504,19 @@
   <canvas id="star-canvas"></canvas>
   <canvas id="particle-canvas"></canvas>
   <canvas id="shoot-canvas"></canvas>
+  <canvas id="game-canvas"></canvas>
+
+  <div id="game-ui">
+    <div id="g-score">Score: 0</div>
+    <div id="g-time">10.0s</div>
+  </div>
+  <div id="game-over">
+    <h2 id="g-end-score">0 Angpao</h2>
+    <p>this game brought to you by <a href="https://elux.space" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;">www.elux.space</a></p>
+    <button id="g-close" style="font-family:'Space Grotesk',sans-serif;font-size:12px;text-transform:uppercase;letter-spacing:3px;background:none;border:1px solid var(--border-strong);color:var(--gold);padding:12px 32px;cursor:pointer;">close game</button>
+  </div>
 
 
-
-  <div id="wish-hint">✦ TAP ANYWHERE TO SEE MAGIC</div>
 
   <!-- ==========================================
        ACT 1 — THE ENVELOPE
@@ -543,9 +576,7 @@
     <div class="divider divider-2" id="c-line2"></div>
 
     <div class="signature-wrap" id="c-sig">
-      <a href="https://elux.space" target="_blank" rel="noopener" class="brand-link">
-        elux.space — product design for founders
-      </a>
+      <div class="easter-egg-btn" id="start-game" tabindex="0">klik di sini utk dapet angpao</div>
     </div>
 
   </div>
@@ -606,6 +637,8 @@
     var pCtx = pCanvas.getContext('2d');
     var shootCanvas = document.getElementById('shoot-canvas');
     var shCtx = shootCanvas.getContext('2d');
+    var gameCanvas = document.getElementById('game-canvas');
+    var gCtx = gameCanvas.getContext('2d');
 
     var stars = [];
     var parallaxX = 0, parallaxY = 0;
@@ -617,6 +650,7 @@
       resizeCanvas(starCanvas);
       resizeCanvas(pCanvas);
       resizeCanvas(shootCanvas);
+      resizeCanvas(gameCanvas);
     }
 
     // Shape types: 0=diamond, 1=plus, 2=square, 3=dot
@@ -784,32 +818,203 @@
       }
     }
 
-    function triggerBlockShower() {
-      var count = 8 + Math.floor(Math.random() * 8);
-      for (var i = 0; i < count; i++) {
-        (function (d) { setTimeout(spawnBlock, d); })(i * 40);
-      }
-      if (navigator.vibrate) navigator.vibrate(15);
-    }
 
     /* ========================================
-       TAP ANYWHERE → BLOCK SHOWER
+       CATCH THE KETUPAT MINI-GAME
     ======================================== */
-    var wishHint = document.getElementById('wish-hint');
+    var gameActive = false;
+    var gameScore = 0;
+    var gameTime = 10.0;
+    var gEntities = [];
+    var hitTexts = [];
+    var lastTs = 0;
+    
+    var envStart = document.getElementById('env-start');
+    var elGameUi = document.getElementById('game-ui');
+    var elScore = document.getElementById('g-score');
+    var elTime = document.getElementById('g-time');
+    var elGameOver = document.getElementById('game-over');
+    var elEndScore = document.getElementById('g-end-score');
+    var btnStartGame = document.getElementById('start-game');
+    var btnCloseGame = document.getElementById('g-close');
+
+    function spawnEntity() {
+      // 25% chance of a firecracker
+      var isFirecracker = Math.random() > 0.75;
+      var size = rand(70, 100);
+      gEntities.push({
+        x: rand(size, window.innerWidth - size),
+        y: -size - 20,
+        size: size,
+        isFirecracker: isFirecracker,
+        // firecrackers fall faster
+        vy: rand(2, 5.5) * (isFirecracker ? 1.5 : 1), 
+        rot: rand(0, Math.PI),
+        rotSpd: rand(-0.05, 0.05)
+      });
+    }
+
+    function startGame() {
+      if (gameActive) return;
+      gameActive = true;
+      gameScore = 0;
+      gameTime = 10.0;
+      gEntities = [];
+      hitTexts = [];
+      lastTs = 0;
+      
+      gameCanvas.classList.add('active');
+      elGameUi.classList.add('visible');
+      elGameOver.classList.remove('visible');
+      setTimeout(function() { elGameOver.style.display = 'none'; }, 500);
+      
+      elScore.textContent = 'Score: 0';
+      elTime.textContent = '10.0s';
+    }
+
+    function endGame() {
+      gameActive = false;
+      gameCanvas.classList.remove('active');
+      elGameUi.classList.remove('visible');
+      elGameOver.style.display = 'flex';
+      setTimeout(function() { elGameOver.classList.add('visible'); }, 50);
+      elEndScore.textContent = gameScore + ' Angpao!';
+      gCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+    }
+
+    if (btnStartGame) {
+      btnStartGame.addEventListener('click', function(e) {
+        e.stopPropagation();
+        startGame();
+      });
+    }
+    if (btnCloseGame) {
+      btnCloseGame.addEventListener('click', function() {
+        elGameOver.classList.remove('visible');
+        setTimeout(function() { elGameOver.style.display = 'none'; }, 500);
+        gCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+      });
+    }
+
+    function handleGameTap(e) {
+      if (!gameActive) return;
+      var mx = e.clientX || (e.touches && e.touches[0].clientX);
+      var my = e.clientY || (e.touches && e.touches[0].clientY);
+      if (mx === undefined) return;
+      
+      // Hit detection (top-most entity first)
+      for (var i = gEntities.length - 1; i >= 0; i--) {
+        var ent = gEntities[i];
+        var dx = ent.x - mx;
+        var dy = ent.y - my;
+        // Collision radius is slightly generous
+        if (dx*dx + dy*dy <= (ent.size * ent.size * 1.5)) {
+          if (ent.isFirecracker) {
+            gameScore = Math.max(0, gameScore - 2);
+            document.body.style.background = '#4a0808';
+            setTimeout(function() { document.body.style.background = 'var(--bg)'; }, 100);
+            hitTexts.push({ x: ent.x, y: ent.y, text: "-2", color: '#D63031', life: 1.0 });
+          } else {
+            gameScore++;
+            spawnParticles(ent.x, ent.y);
+            hitTexts.push({ x: ent.x, y: ent.y, text: "+1", color: '#D4A853', life: 1.0 });
+          }
+          elScore.textContent = 'Score: ' + gameScore;
+          gEntities.splice(i, 1);
+          break;
+        }
+      }
+    }
+
+    if (gameCanvas) {
+      gameCanvas.addEventListener('mousedown', handleGameTap);
+      gameCanvas.addEventListener('touchstart', function(e) { e.preventDefault(); handleGameTap(e); }, {passive: false});
+    }
+
+    function updateGame(ts) {
+      if (!gameActive) return;
+      if (lastTs === 0) lastTs = ts;
+      var dt = (ts - lastTs) / 1000;
+      lastTs = ts;
+      
+      gameTime -= dt;
+      if (gameTime <= 0) {
+        gameTime = 0;
+        endGame();
+      }
+      elTime.textContent = gameTime.toFixed(1) + 's';
+
+      // Progressive difficulty for 10 seconds
+      var spawnRate = 0.04 + (10 - gameTime) * 0.01;
+      if (Math.random() < spawnRate) spawnEntity();
+
+      gCtx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+      
+      for (var i = 0; i < gEntities.length; i++) {
+        var ent = gEntities[i];
+        ent.y += ent.vy;
+        ent.rot += ent.rotSpd;
+        
+        gCtx.save();
+        gCtx.translate(ent.x, ent.y);
+        gCtx.rotate(ent.rot);
+        
+        if (ent.isFirecracker) {
+          // Draw Black Bomb (avoid confusion with red angpao)
+          gCtx.fillStyle = '#2D3436';
+          gCtx.beginPath();
+          gCtx.arc(0, 0, ent.size/2, 0, Math.PI*2);
+          gCtx.fill();
+          gCtx.fillRect(-ent.size*0.15, -ent.size*0.6, ent.size*0.3, ent.size*0.2);
+          gCtx.beginPath();
+          gCtx.moveTo(0, -ent.size*0.6);
+          gCtx.bezierCurveTo(ent.size/4, -ent.size*0.8, -ent.size/4, -ent.size*0.9, ent.size/3, -ent.size);
+          gCtx.strokeStyle = '#D4A853';
+          gCtx.lineWidth = 2;
+          gCtx.stroke();
+        } else {
+          // Draw Angpao (Red Envelope)
+          gCtx.fillStyle = '#E63946'; // Bright Red
+          gCtx.fillRect(-ent.size*0.4, -ent.size*0.6, ent.size*0.8, ent.size*1.2);
+          
+          gCtx.beginPath();
+          gCtx.moveTo(-ent.size*0.4, -ent.size*0.3);
+          gCtx.quadraticCurveTo(0, 0, ent.size*0.4, -ent.size*0.3);
+          gCtx.strokeStyle = '#D4A853'; // Gold border
+          gCtx.lineWidth = 1.5;
+          gCtx.stroke();
+          
+          gCtx.fillStyle = '#D4A853';
+          gCtx.beginPath();
+          gCtx.arc(0, -ent.size*0.05, ent.size*0.12, 0, Math.PI*2);
+          gCtx.fill();
+        }
+        gCtx.restore();
+      }
+
+      for (var j = hitTexts.length - 1; j >= 0; j--) {
+        var ht = hitTexts[j];
+        ht.life -= dt * 1.5;
+        ht.y -= dt * 60;
+        if (ht.life <= 0) {
+          hitTexts.splice(j, 1);
+          continue;
+        }
+        gCtx.save();
+        gCtx.globalAlpha = Math.max(0, ht.life);
+        gCtx.fillStyle = ht.color;
+        gCtx.font = "bold 32px 'Space Grotesk', sans-serif";
+        gCtx.textAlign = 'center';
+        gCtx.textBaseline = 'middle';
+        gCtx.fillText(ht.text, ht.x, ht.y);
+        gCtx.restore();
+      }
+      
+      var innerHeight = window.innerHeight;
+      gEntities = gEntities.filter(function(e) { return e.y < innerHeight + 100; });
+    }
+
     var opened = false;
-
-    document.addEventListener('click', function (e) {
-      if (!opened) return;
-      if (e.target.closest('#act1') || e.target.closest('a')) return;
-      triggerBlockShower();
-    });
-    document.addEventListener('touchend', function (e) {
-      if (!opened) return;
-      if (e.target.closest('#act1') || e.target.closest('a')) return;
-      triggerBlockShower();
-    }, { passive: true });
-
-
 
     /* ========================================
        ACT 1 → ACT 2
@@ -841,7 +1046,6 @@
           var el = document.getElementById(item.id);
           if (el) el.classList.add(item.cls);
         });
-        setTimeout(function () { wishHint.classList.add('visible'); }, 2500);
         if (recipientName) {
           setTimeout(function () {
             var nameEl = document.getElementById('greeting-name');
@@ -872,6 +1076,7 @@
       drawStars(ts);
       drawParticles();
       drawBlocks();
+      if (gameActive) updateGame(ts);
       requestAnimationFrame(loop);
     }
     requestAnimationFrame(loop);
